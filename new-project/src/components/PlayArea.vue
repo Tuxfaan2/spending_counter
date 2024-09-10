@@ -1,8 +1,5 @@
 <template>
-  <fieldset class="grid grid-cols-10 grid-rows-5">
-    <div class="size-full bg-green-500"></div>
-    <img src="../../textures/Tiles/Grass_Middle.png" alt="Grass"/>
-  </fieldset>
+  <img src="../../textures/landscapes/landscape800x600.png" alt="Grass"/>
 </template>
 <script setup lang="ts">
 </script>
