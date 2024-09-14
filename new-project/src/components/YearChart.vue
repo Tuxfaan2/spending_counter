@@ -1,17 +1,17 @@
 <template>
   <fieldset class="grid grid-cols-12 gap-2 w-2/3 m-auto mt-36">
-    <ChartBar month="Jan" @on-click-item="resetAllExcludedOwn" v-model="isActiveJanuary"/>
-    <ChartBar month="Feb" @on-click-item="resetAllExcludedOwn" v-model="isActiveFebruary"/>
-    <ChartBar month="Mar" @on-click-item="resetAllExcludedOwn" v-model="isActiveMarch"/>
-    <ChartBar month="Apr" @on-click-item="resetAllExcludedOwn" v-model="isActiveApril"/>
+    <ChartBar month="January" @on-click-item="resetAllExcludedOwn" v-model="isActiveJanuary"/>
+    <ChartBar month="February" @on-click-item="resetAllExcludedOwn" v-model="isActiveFebruary"/>
+    <ChartBar month="March" @on-click-item="resetAllExcludedOwn" v-model="isActiveMarch"/>
+    <ChartBar month="April" @on-click-item="resetAllExcludedOwn" v-model="isActiveApril"/>
     <ChartBar month="May" @on-click-item="resetAllExcludedOwn" v-model="isActiveMay"/>
-    <ChartBar month="Jun" @on-click-item="resetAllExcludedOwn" v-model="isActiveJune"/>
-    <ChartBar month="Jul" @on-click-item="resetAllExcludedOwn" v-model="isActiveJuly"/>
-    <ChartBar month="Aug" @on-click-item="resetAllExcludedOwn" v-model="isActiveAugust"/>
-    <ChartBar month="Sep" @on-click-item="resetAllExcludedOwn" v-model="isActiveSeptember"/>
-    <ChartBar month="Oct" @on-click-item="resetAllExcludedOwn" v-model="isActiveOctober"/>
-    <ChartBar month="Nov" @on-click-item="resetAllExcludedOwn" v-model="isActiveNovember"/>
-    <ChartBar month="Dec" @on-click-item="resetAllExcludedOwn" v-model="isActiveDecember"/>
+    <ChartBar month="June" @on-click-item="resetAllExcludedOwn" v-model="isActiveJune"/>
+    <ChartBar month="July" @on-click-item="resetAllExcludedOwn" v-model="isActiveJuly"/>
+    <ChartBar month="August" @on-click-item="resetAllExcludedOwn" v-model="isActiveAugust"/>
+    <ChartBar month="September" @on-click-item="resetAllExcludedOwn" v-model="isActiveSeptember"/>
+    <ChartBar month="October" @on-click-item="resetAllExcludedOwn" v-model="isActiveOctober"/>
+    <ChartBar month="November" @on-click-item="resetAllExcludedOwn" v-model="isActiveNovember"/>
+    <ChartBar month="December" @on-click-item="resetAllExcludedOwn" v-model="isActiveDecember"/>
   </fieldset>
   <label class="w-full border-b border-black"/>
 </template>
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import ChartBar from "./ChartBar.vue";
 import {ref} from "vue";
+import {Month} from "../types/MonthTypes.ts";
 
 const isActiveJanuary = ref<boolean>(false);
 const isActiveFebruary = ref<boolean>(false);
@@ -33,9 +34,14 @@ const isActiveOctober = ref<boolean>(false);
 const isActiveNovember = ref<boolean>(false);
 const isActiveDecember = ref<boolean>(false);
 
-function resetAllExcludedOwn(column: string) {
+const emit = defineEmits<{
+  (event: "on-click-column", value: Month): void;
+}>()
+
+function resetAllExcludedOwn(column: Month) {
+  emit("on-click-column", column);
   switch (column) {
-    case "Jan":
+    case "January":
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
       isActiveApril.value = false;
@@ -48,7 +54,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Feb":
+    case "February":
       isActiveJanuary.value = false;
       isActiveMarch.value = false;
       isActiveApril.value = false;
@@ -61,7 +67,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Mar":
+    case "March":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveApril.value = false;
@@ -74,7 +80,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Apr":
+    case "April":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
@@ -100,7 +106,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Jun":
+    case "June":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
@@ -113,7 +119,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Jul":
+    case "July":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
@@ -126,7 +132,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Aug":
+    case "August":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
@@ -139,7 +145,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Sep":
+    case "September":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
@@ -152,7 +158,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Oct":
+    case "October":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
@@ -165,7 +171,7 @@ function resetAllExcludedOwn(column: string) {
       isActiveNovember.value = false;
       isActiveDecember.value = false;
       break;
-    case "Nov":
+    case "November":
       isActiveJanuary.value = false;
       isActiveFebruary.value = false;
       isActiveMarch.value = false;
