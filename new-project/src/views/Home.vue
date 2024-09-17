@@ -3,27 +3,31 @@
   <div class="w-full">
     <YearChart @on-click-column="openModalAfterClickEvent" class="m-auto"/>
   </div>
-  <ExpensesModal :isOpen="isOpen" class="mt-36" :text="monthToDisplay"/>
-  <ExpensesModal :isOpen="isOpen" class="mt-36" :text="monthToDisplay"/>
+  <label v-for="item in users">{{item.name}}</label>
 </template>
 
 <script setup lang="ts">
 
 import Navbar from "../components/Navbar.vue";
 import YearChart from "../components/YearChart.vue";
-import {useModal} from "../composables/useModal.ts";
-import ExpensesModal from "../components/ExpensesModal.vue";
 import {Month} from "../types/MonthTypes.ts";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {useDataApi} from "../composables/useDataApi.ts";
 
 const monthToDisplay = ref<Month>()
+const users = ref<TestResponse[]>()
 
-const {isOpen, openModal} = useModal();
+const {getUsers} = useDataApi()
+export type TestResponse = {
+  name: string, description: string, id: number
+}
 
 function openModalAfterClickEvent(value: Month) {
-  openModal();
   monthToDisplay.value = value;
 }
+onMounted(async () => {
+  users.value = await  getUsers()
+})
 </script>
 
 <style scoped>
