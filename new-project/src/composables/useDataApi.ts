@@ -13,9 +13,6 @@ export function useDataApi(): {
                 method: "GET",
             })).json();
     }
-    async function getUserByName(){
-
-    }
 
     return {getUsers}
 }
